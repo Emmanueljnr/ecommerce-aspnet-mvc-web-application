@@ -1,4 +1,4 @@
-﻿using eTcikets.Models;
+﻿using eTickets.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
