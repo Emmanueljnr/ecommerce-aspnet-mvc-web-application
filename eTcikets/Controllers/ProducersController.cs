@@ -24,9 +24,5 @@ namespace eTickets.Controllers
         //    return View();
         //}
 
-
-
-
     }
-    //
 }
