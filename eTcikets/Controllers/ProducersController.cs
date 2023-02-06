@@ -12,10 +12,10 @@ namespace eTickets.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index() 
+        public async Task<IActionResult> Index()
         {
             var allProducers = await _context.Producers.ToListAsync();
-            return View();
+            return View(allProducers);
         }
 
         //public IActionResult Index()
@@ -24,5 +24,5 @@ namespace eTickets.Controllers
         //    return View();
         //}
 
-    }
+    } 
 }

@@ -7,7 +7,7 @@ namespace eTickets.Models
         [Key]
         public int Id { get; set; }
 
-        [Display(Name = "Profile Picture URL")] //this is so that i dont have to repeat myself in the Views
+        [Display(Name = "Profile Picture")] //this is so that i dont have to repeat myself in the Views
         public string ProfilePictureURL { get; set; }
 
         [Display(Name = "Full Name")]
