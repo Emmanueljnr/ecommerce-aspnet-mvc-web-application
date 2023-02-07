@@ -1,21 +1,40 @@
 ﻿using eTickets.Data;
+using eTickets.Data.Services;
+using eTickets.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eTickets.Controllers
 {
     public class ActorsController : Controller
     {
-        private readonly AppDbContext _context;
-        public ActorsController(AppDbContext context)
+        private readonly IActorsService _service;
+        public ActorsController(IActorsService service)
         {
-            _context = context;
+            _service = service;
         }
 
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var data = _context.Actors.ToList(); //context.actors because we wanna return the actors that are within this context file    
-            return View(data); //we'll pass the data in the view as a parameter so we can see it.
+            var data = await _service.GetAll();
+            return View(data);
+        }
+
+        //Get Actors/Create
+        public async Task<IActionResult> Create() 
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("FullName, ProfilePictureURL, Bio")]Actor actor) 
+        {
+            //if model state isnt valid
+            if (!ModelState.IsValid) 
+            {
+                return View(); //this will return the exact same view, but itll have the model state errors, cos we already defined them in our Actors Model for validation
+            }
+            _service.Add(actor);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
